@@ -19,7 +19,7 @@ It should be possible to run the Kinect Body Tracking SDK on the mkv recordings 
 3. Clone this repository and install how?
 4. Test successful installation of Kinect Body Tracking SDK by running: `k4abt_simple_3d_viewer.exe OFFLINE stereo_test.mkv`. The `k4abt_simple_3d_viewer.exe` executable can be found in C:\Program Files\Azure Kinect Body Tracking SDK\tools. The `stereo_test.mkv` can be found in the shared living lab oneDrive `backup_data\kinect_tests\clean_recordings`
 5. Install ffmpeg from here: [Download FFmpeg](https://ffmpeg.org/download.html)
-6. Unzip Azure-Kinect-Sensor-SDK-develop.zip (this is the source code for the Kinect SDK and you can analyze it to try and understand the expected structure of mkv recordings)
+6. Unzip Azure-Kinect-Sensor-SDK-develop.zip (this is the source code for the Kinect SDK taken from [this repo](https://github.com/microsoft/Azure-Kinect-Sensor-SDK/tree/develop) and you can analyze it to try and understand the expected structure of mkv recordings)
 
 
 
