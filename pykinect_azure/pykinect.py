@@ -1,7 +1,8 @@
 import ctypes
 
 from pykinect_azure.k4a import _k4a, Device, default_configuration
-from pykinect_azure.k4abt import _k4abt, Tracker, default_tracker_configuration
+from pykinect_azure.k4abt import _k4abt, Tracker
+from pykinect_azure.k4abt._k4abtTypes import k4abt_tracker_default_configuration, K4ABT_TRACKER_PROCESSING_MODE_GPU_CUDA
 from pykinect_azure.k4arecord import _k4arecord
 from pykinect_azure.k4arecord.playback import Playback
 from pykinect_azure.utils import get_k4a_module_path, get_k4abt_module_path, get_k4arecord_module_path
@@ -35,6 +36,10 @@ def init_k4a(module_k4a_path):
 def init_k4abt(module_k4abt_path):
 
     _k4abt.setup_library(module_k4abt_path)
+    try:
+        ctypes.cdll.LoadLibrary("C:/Program Files/Azure Kinect Body Tracking SDK/tools/directml.dll")
+    except Exception as e:
+        k4abt_tracker_default_configuration.processing_mode  = K4ABT_TRACKER_PROCESSING_MODE_GPU_CUDA
 
 def init_k4arecord(module_k4arecord_path):
 
@@ -50,11 +55,11 @@ def start_device(device_index=0, config=default_configuration, record=False, rec
 
     return device
 
-def start_body_tracker(model_type=default_tracker_configuration, calibration=None, tracker_configuration=default_tracker_configuration):
-    if not calibration:
-        calibration = Device.calibration
-
-    return Tracker(calibration, model_type, tracker_configuration)
+def start_body_tracker(model_type=_k4abt.K4ABT_DEFAULT_MODEL, calibration=None):
+    if calibration:
+        return Tracker(calibration, model_type)
+    else:
+        return Tracker(Device.calibration, model_type)
 
 def start_playback(filepath):
 

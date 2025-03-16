@@ -14,9 +14,19 @@ It should be possible to run the Kinect Body Tracking SDK on the mkv recordings 
 
 
 ## Setup
-1. Install Kinect SDK v1.4.1 from here: [Download Azure Kinect SDK 1.4.1 from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=101454)
-2. Install Azure Kinect Body Tracking SDK v1.1.2 from here: [Download Azure Kinect Body Tracking SDK 1.1.2 from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=104221)
-3. Clone this repository and install how?
+1. Download Kinect SDK v1.4.1 from here: [Download Azure Kinect SDK 1.4.1 from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=101454). Run the installer.
+2. Download Azure Kinect Body Tracking SDK v1.1.2 from here: [Download Azure Kinect Body Tracking SDK 1.1.2 from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=104221). Run the installer
+3. Clone this repository and setup environment:
+    
+    3.1. Install conda environment: `conda env create -f environment.yml`
+    
+    3.2. Activate environment: `conda activate repairkinect`
+    
+    3.3. Install this pykinect repo: `pip install pykinect_azure`
+    
+    3.4. Install open3d: `pip install open3d==0.16.0`
+    
+    3.5. Test successful setup by setting the `video_filename` variable from `pose_from_mkv.py` to an uncorrupted mkv recording from `backup_data\kinect_tests\clean_recordings` and then running `python pose_from_mkv.py`
 4. Test successful installation of Kinect Body Tracking SDK by running: `k4abt_simple_3d_viewer.exe OFFLINE stereo_test.mkv`. The `k4abt_simple_3d_viewer.exe` executable can be found in C:\Program Files\Azure Kinect Body Tracking SDK\tools. The `stereo_test.mkv` can be found in the shared living lab oneDrive `backup_data\kinect_tests\clean_recordings`
 5. Install ffmpeg from here: [Download FFmpeg](https://ffmpeg.org/download.html)
 6. Unzip Azure-Kinect-Sensor-SDK-develop.zip (this is the source code for the Kinect SDK taken from [this repo](https://github.com/microsoft/Azure-Kinect-Sensor-SDK/tree/develop) and you can analyze it to try and understand the expected structure of mkv recordings)

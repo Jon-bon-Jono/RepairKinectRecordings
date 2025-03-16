@@ -1,4 +1,5 @@
 import time
+import traceback 
 
 import cv2
 import ctypes
@@ -17,11 +18,12 @@ import pykinect_azure as pykinect
 
 if __name__ == "__main__":
 
-	video_filename = "C:\\Users\\GSBME\\Videos\\output.mkv"
+	#video_filename = "C:\\Users\\GSBME\\Videos\\output.mkv"
+	video_filename = "C:\\Users\\z5162987\\OneDrive - UNSW\\fall_detection\\backup_data\\kinect_tests\\clean_recordings\\output.mkv"
 
 	# Initialize the library, if the library is not found, add the library path as argument
 	pykinect.initialize_libraries(track_body=True)
-
+	print("Pykinect initialized")
 	# Start playback
 	playback = pykinect.start_playback(video_filename)
 
@@ -32,7 +34,7 @@ if __name__ == "__main__":
 
 	# Start body tracker
 	bodyTracker = pykinect.start_body_tracker(calibration=playback_calibration)
-
+	print("Body tracker started")
 	while True:
 
 		# Get camera capture
@@ -45,6 +47,7 @@ if __name__ == "__main__":
 		try:
 			body_frame = bodyTracker.update(capture=capture) 
 		except:
+			#traceback.print_exc() 
 			continue
 
 		body_num = body_frame.get_num_bodies()

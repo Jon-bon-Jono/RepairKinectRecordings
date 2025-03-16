@@ -19,6 +19,7 @@ class Device:
 		self.recording = False
 
 	def __del__(self):
+		print("k4a.Device Destructor called")
 		self.close()
 
 	def is_valid(self):
@@ -60,7 +61,7 @@ class Device:
 		if self.is_capture_initialized():
 			Device.capture._handle = capture_handle
 		else :
-			Device.capture = Capture(capture_handle, Device.calibration)
+			Device.capture = Capture(capture_handle, Device.calibration.handle())
 		
 		# Write capture if recording
 		if self.recording:
@@ -82,7 +83,6 @@ class Device:
 		return Device.imu_sample
 
 	def get_capture(self, timeout_in_ms=_k4a.K4A_WAIT_INFINITE):
-
 		# Release current handle
 		if self.is_capture_initialized():
 			Device.capture.release_handle()
