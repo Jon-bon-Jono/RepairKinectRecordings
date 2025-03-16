@@ -1,0 +1,8 @@
+name: repairkinect
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10.6
+  - numpy=1.21.5
+  - opencv=4.6.0
